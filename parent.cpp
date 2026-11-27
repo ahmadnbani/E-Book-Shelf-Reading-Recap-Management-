@@ -1,5 +1,6 @@
 #include "tubes.h"
 #include <iostream>
+#include <iomanip>
 using namespace std;
 
 static int nomorRak = 0;
@@ -44,7 +45,7 @@ void insertParent (listRak &L, adrRak p, int pilihan, string idPrev) {
     case 2:
         adrRak prec = findParentById(L, idPrev);
         if (prec == nullptr){
-            cout << "ID tidak ditemukan! Silahkan input ulang"
+            cout << "ID tidak ditemukan! Silahkan input ulang" << endl;
             return;
         }
         insertAfter(L, prec, p);
@@ -92,6 +93,56 @@ void insertAfter (listRak &L, adrRak prec, adrRak p) {
         prec->next = p;
     }
 }
+void printBarisKartu (string isi) {
+    if (isi.length() > 34) {
+        isi = isi.substr(0, 31) + "...";
+    }
+    cout << "| " << left << setw(34) << isi << " |" << endl;
+    cout << right;
+}
 void printParent (listRak L) {
+    string garisTebal = string(38, '=');
+    string garisTipis = string(38, '-');
+    string garisKartu = "+" + string(36, '-') + "+";
 
+    cout << garisTebal << endl;
+    cout << "       E-BOOK SHELF MANAGEMENT" << endl;
+    cout << garisTebal << endl;
+
+    if (L.first == NULL) {
+        cout << " Belum ada rak." << endl;
+        cout << garisTebal << endl;
+        return;
+    }
+
+    int totalRak = 0;
+    int totalEbook = 0;
+    int rakKosong = 0;
+
+    adrRak P = L.first;
+    while (P != NULL) {                       
+        string deskripsi = P->info.deskripsi;
+        if (deskripsi == "") {               
+            deskripsi = "-";
+        }
+
+        cout << garisKartu << endl;
+        printBarisKartu(P->info.idRak + " - " + P->info.namaRak);
+        printBarisKartu(deskripsi);
+        printBarisKartu("Ebook: " + to_string(P->info.jumlahEbook) + "/" + to_string(P->info.kapasitas));
+        cout << garisKartu << endl;
+
+        totalRak++;
+        totalEbook += P->info.jumlahEbook;
+        if (P->info.jumlahEbook == 0) {
+            rakKosong++;
+        }
+
+        P = P->next;                         
+    }
+
+    cout << garisTipis << endl;
+    cout << " Rekap: " << totalRak << " rak | " << totalEbook << " ebook | "
+         << rakKosong << " kosong" << endl;
+    cout << garisTebal << endl;
 }

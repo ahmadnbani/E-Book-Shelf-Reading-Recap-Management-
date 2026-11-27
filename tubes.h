@@ -20,6 +20,7 @@ struct dataRak {
     string idRak;
     string namaRak;
     string deskripsi;
+    int jumlahEbook;
     int kapasitas;
 };
 struct elmRak {
@@ -39,7 +40,7 @@ struct listRak {
 };
 void createListRak (listRak &L);
 bool isEmptyRak (listRak L);
-bool isEmptyEbook (adrEbook p);
+bool isEmptyEbook (adrRak p);
 adrRak createParent(string namaRak, string deskripsi, int kapasitas);
 string generateIdRak (string awalan, int &nomorRak);
 void insertParent (listRak &L, adrRak p, int pilihan, string idPrev);
@@ -47,5 +48,8 @@ adrRak findParentById (listRak L, string idRak);
 void insertFirst (listRak &L, adrRak p);
 void insertLast (listRak &L, adrRak p);
 void insertAfter (listRak &L, adrRak prec, adrRak p);
+void printBarisKartu (string isi);
 void printParent (listRak L);
+
+
 #endif // TUBES_H_INCLUDED
