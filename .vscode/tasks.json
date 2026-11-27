@@ -8,7 +8,8 @@
             "args": [
                 "-g",
                 "${workspaceFolder}/main.cpp",
-                "${workspaceFolder}/tubes.cpp",
+                "${workspaceFolder}/parent.cpp",
+                "${workspaceFolder}/child.cpp",
                 "-o",
                 "${workspaceFolder}/program.exe"
             ],

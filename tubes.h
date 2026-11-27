@@ -40,16 +40,24 @@ struct listRak {
 };
 void createListRak (listRak &L);
 bool isEmptyRak (listRak L);
-bool isEmptyEbook (adrRak p);
 adrRak createParent(string namaRak, string deskripsi, int kapasitas);
 string generateIdRak (string awalan, int &nomorRak);
-void insertParent (listRak &L, adrRak p, int pilihan, string idPrev);
 adrRak findParentById (listRak L, string idRak);
+void insertParent (listRak &L, adrRak p, int pilihan);
 void insertFirst (listRak &L, adrRak p);
 void insertLast (listRak &L, adrRak p);
 void insertAfter (listRak &L, adrRak prec, adrRak p);
+void deleteParent (listRak &L, adrRak &p, string idRak);
 void printBarisKartu (string isi);
 void printParent (listRak L);
+
+bool isEmptyEbook (adrRak p);
+adrEbook createChild (string judul, string penulis, string genre, string deskripsi, int totalHal, int HalTerbaca, float rating, string status);
+string generateIdEbook (string awalan, int &nomorEbook);
+adrEbook findChildById (adrRak p, string idEbook);
+void insertChild (adrRak p, adrEbook c, int pilihan);
+void deleteChildOption (adrRak p, adrEbook &c, int pilihan, string idEbook);
+void deleteAllChild (adrRak p);
 
 
 #endif // TUBES_H_INCLUDED
